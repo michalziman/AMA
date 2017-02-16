@@ -124,10 +124,11 @@ class MovieTableController: UITableViewController {
     // MARK: - Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // TODO
         if segue.identifier == "ShowDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 // set movie to display in detail based on selected row
+                let controller = segue.destination as! MovieDetailController
+                controller.movie = filteredMovies[indexPath.row]
             }
         }
     }

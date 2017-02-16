@@ -10,13 +10,15 @@ import UIKit
 
 class MovieDetailController: UIViewController {
 
-    @IBOutlet weak var contentScrollView: UIScrollView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var genresLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var overviewLabel: UILabel!
     
     var movie: MovieEntity? {
         didSet {
-            // Update the view.
-            updateView()
-            
             // Get missing information from movie database
             MovieDatabase.sharedInstance.getDetailsForMovie(movie!) { (movieDict) in
                 DispatchQueue.main.async {
@@ -33,8 +35,6 @@ class MovieDetailController: UIViewController {
                     self.updateView()
                 }
             }
-            
-            // TODO get image if is not present
         }
     }
     
@@ -44,14 +44,32 @@ class MovieDetailController: UIViewController {
             return
         }
         
-        // show content - all contained in scroll view
-        if let scrollView = self.contentScrollView  {
-            scrollView.isHidden = false
-            // Set UI values TODO
-            //            self.detailDescriptionLabel.text = movie.description
-        }
+        titleLabel.text = movie.title
+        genresLabel.text = movie.genres.joined(separator: ", ")
+        yearLabel.text = "\(movie.releaseYear)"
+        overviewLabel.text = movie.overview
         
-        // TODO turn on/off constraints
+        if let image = movie.image {
+            imageView.image = image
+        } else if activityIndicator.isHidden {
+            // using activityIndicator isHidden proverty to prevent launching multiple downloads
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+            // load image
+            if movie.posterPath != "" {
+                MovieDatabase.sharedInstance.downloadMovieImage(movie.posterPath, withCallback: { (downloadedImage) in
+                    DispatchQueue.main.async {
+                        if downloadedImage != nil {
+                            // if download succeeded, save image for the movie to temp directory
+                            movie.image = downloadedImage
+                            self.imageView.image = downloadedImage
+                        }
+                        // stop spinner when image is loaded, successfully or not
+                        self.activityIndicator.stopAnimating()
+                    }
+                })
+            }
+        }
     }
     
     override func viewDidLoad() {

@@ -260,7 +260,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUy-AB-gNu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BUy-AB-gNu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VpB-AO-4Kb">
@@ -269,7 +269,7 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6hs-Xg-6Hg">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                                             </imageView>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="asn-tW-ICJ">
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="asn-tW-ICJ">
                                                 <rect key="frame" x="142" y="72" width="37" height="37"/>
                                                 <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </activityIndicatorView>
@@ -352,7 +352,7 @@
                                     <constraint firstItem="Px8-zt-dBw" firstAttribute="leading" secondItem="BUy-AB-gNu" secondAttribute="leading" constant="8" id="p5u-tc-tWp"/>
                                     <constraint firstItem="bnI-Ls-4NQ" firstAttribute="trailing" secondItem="fpt-52-S8A" secondAttribute="trailing" id="qCr-dl-kmC"/>
                                     <constraint firstItem="Px8-zt-dBw" firstAttribute="top" secondItem="VpB-AO-4Kb" secondAttribute="bottom" constant="7.5" id="rCK-yy-cWl"/>
-                                    <constraint firstAttribute="bottom" secondItem="n6c-tQ-mpo" secondAttribute="bottom" constant="79.5" id="rbU-RL-B9D"/>
+                                    <constraint firstAttribute="bottom" secondItem="n6c-tQ-mpo" secondAttribute="bottom" constant="8" id="rbU-RL-B9D"/>
                                     <constraint firstItem="bnI-Ls-4NQ" firstAttribute="top" secondItem="fpt-52-S8A" secondAttribute="bottom" constant="8" id="sjC-PE-17n"/>
                                     <constraint firstItem="VpB-AO-4Kb" firstAttribute="top" secondItem="BUy-AB-gNu" secondAttribute="top" id="vrP-At-tJp"/>
                                     <constraint firstItem="fpt-52-S8A" firstAttribute="trailing" secondItem="L0S-QR-L6A" secondAttribute="trailing" id="zVG-fK-rXk"/>
@@ -370,7 +370,12 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Movie Detail" id="fQk-kZ-qSv"/>
                     <connections>
-                        <outlet property="contentScrollView" destination="BUy-AB-gNu" id="QIP-F2-C7W"/>
+                        <outlet property="activityIndicator" destination="asn-tW-ICJ" id="nlM-mg-iId"/>
+                        <outlet property="genresLabel" destination="fpt-52-S8A" id="Rmj-iE-mJP"/>
+                        <outlet property="imageView" destination="6hs-Xg-6Hg" id="fh1-Vn-yx0"/>
+                        <outlet property="overviewLabel" destination="n6c-tQ-mpo" id="Bf0-FJ-azF"/>
+                        <outlet property="titleLabel" destination="Px8-zt-dBw" id="NDs-UI-vSs"/>
+                        <outlet property="yearLabel" destination="SVJ-0S-hih" id="SqL-yG-98n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cwB-vE-IdW" sceneMemberID="firstResponder"/>
