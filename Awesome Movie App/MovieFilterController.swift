@@ -78,11 +78,11 @@ class MovieFilterController: UITableViewController {
         // difficult logic of showing and hiding pickers
         
         tableView.beginUpdates()
-        tableView.reloadRows(at: [indexPath], with: .none)
         if indexPath.row == 0 {
             if isShowingPickerForMinYear {
                 // clicked min year to hide its picker
                 isShowingPickerForMinYear = false
+                tableView.reloadRows(at: [indexPath], with: .none)
                 tableView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .middle)
                 tableView.endUpdates()
                 return
@@ -92,6 +92,7 @@ class MovieFilterController: UITableViewController {
                 // clicked min year to hide max year picker and show min year picker
                 isShowingPickerForMaxYear = false
                 isShowingPickerForMinYear = true
+                tableView.reloadRows(at: [indexPath, IndexPath(row: 1, section: 0)], with: .none)
                 tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .middle)
                 tableView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .middle)
                 tableView.endUpdates()
@@ -100,6 +101,7 @@ class MovieFilterController: UITableViewController {
             
             // clicked min year to show its picker (nothing shown before)
             isShowingPickerForMinYear = true
+            tableView.reloadRows(at: [indexPath], with: .none)
             tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .middle)
             tableView.endUpdates()
             return
@@ -109,6 +111,7 @@ class MovieFilterController: UITableViewController {
             if isShowingPickerForMaxYear {
                 // clicked max year to hide its picker
                 isShowingPickerForMaxYear = false
+                tableView.reloadRows(at: [indexPath], with: .none)
                 tableView.deleteRows(at: [IndexPath(row: 2, section: 0)], with: .middle)
                 tableView.endUpdates()
                 return
@@ -116,6 +119,7 @@ class MovieFilterController: UITableViewController {
             
             // clicked max year to show its picker (nothing shown before)
             isShowingPickerForMaxYear = true
+            tableView.reloadRows(at: [indexPath], with: .none)
             tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .middle)
             tableView.endUpdates()
             return
@@ -125,6 +129,7 @@ class MovieFilterController: UITableViewController {
             // clicked max year to hide min year picker and show max year picker
             isShowingPickerForMaxYear = true
             isShowingPickerForMinYear = false
+            tableView.reloadRows(at: [indexPath, IndexPath(row: 0, section: 0)], with: .none)
             tableView.insertRows(at: [IndexPath(row: 2, section: 0)], with: .middle)
             tableView.deleteRows(at: [IndexPath(row: 1, section: 0)], with: .middle)
             tableView.endUpdates()
