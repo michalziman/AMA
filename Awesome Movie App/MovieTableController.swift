@@ -37,9 +37,9 @@ class MovieTableController: UITableViewController {
                 // if there are some, display them and stop refresh controller UI feedback
                 DispatchQueue.main.async {
                     self.allMovies = movies
-                    self.filterMovies()
                     self.refreshControl?.endRefreshing()
                     self.pagesLoaded = 1
+                    self.filterMovies()
                 }
             } else {
                 // if there are no movies (probably error), show alert
@@ -85,9 +85,10 @@ class MovieTableController: UITableViewController {
         }
         
         self.tableView.reloadData()
+        // reloading data will eventuelly cause displaying of last cell again and thus loading next page, if entries are so few, that last cell will be displayed
         
         // if there is nothing after filtering, load next page
-        if filteredMovies.count < 1 {
+        if filteredMovies.count < 1  {
             loadNextPage()
         }
     }
@@ -102,17 +103,11 @@ class MovieTableController: UITableViewController {
                         // the async response arrived after reloading, would shuffle results, so just ignore it
                         return
                     }
-                    // remember number of filtered items
-                    let numberOfFiltered = self.filteredMovies.count
                     // append movies from next page
                     self.allMovies.append(contentsOf: movies)
+                    self.pagesLoaded += 1
                     // filter
                     self.filterMovies()
-                    self.pagesLoaded += 1
-                    // if there is no new filtered items and yet the query is not nonsense, load next page
-                    if self.filteredMovies.count <= numberOfFiltered{
-                        self.loadNextPage()
-                    }
                 }
             } else {
                 // if there are no movies (probably error), show alert
