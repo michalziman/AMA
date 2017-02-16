@@ -12,9 +12,10 @@ class MovieTableController: UITableViewController {
 
     var allMovies = [MovieEntity]()
     var filteredMovies = [MovieEntity]()
+    var pagesLoaded = 0
+    
     var filterMinimum = MovieFilterController.minimumProductionYear
     var filterMaximum = Calendar.current.component(.year, from: Date()) // now
-    var pagesLoaded = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

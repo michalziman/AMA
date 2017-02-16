@@ -10,7 +10,7 @@ import UIKit
 import AFNetworking
 
 class MovieDatabase: NSObject {
-    struct APICalls {
+    struct APICalls { // requests formats
         private static let apiKeySuffix = "?api_key=44d748443604f06fc59b4ce6d9201418"
         private static let imageURLPrefix = "https://image.tmdb.org/t/p/w342"
         private static let movieDetailURLPrefix = "https://api.themoviedb.org/3/movie/"
