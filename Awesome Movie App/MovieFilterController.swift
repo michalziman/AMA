@@ -41,18 +41,27 @@ class MovieFilterController: UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MinYearCell", for: indexPath) as! YearCell
             cell.yearLabel.text = "\(minYear)"
+            cell.yearLabel.textColor = isShowingPickerForMinYear ? UIView.appearance().tintColor : UIColor.darkGray
             return cell
         }
         if (!isShowingPickerForMinYear && indexPath.row == 1) || (isShowingPickerForMinYear && indexPath.row == 2) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MaxYearCell", for: indexPath) as! YearCell
             cell.yearLabel.text = "\(maxYear)"
+            cell.yearLabel.textColor = isShowingPickerForMaxYear ? UIView.appearance().tintColor : UIColor.darkGray
             return cell
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PickerCell", for: indexPath) as! PickerCell
-        cell.pickerView.delegate = self
-        let rowToSelect = (isShowingPickerForMinYear ? minYear : maxYear) - MovieFilterController.minimumProductionYear
-        cell.pickerView.selectRow(rowToSelect, inComponent: 0, animated: false)
+        cell.delegate = self
+        if isShowingPickerForMinYear {
+            cell.pickerRangeMin = MovieFilterController.minimumProductionYear
+            cell.pickerRangeMax = maxYear
+        } else {
+            cell.pickerRangeMin = minYear
+            cell.pickerRangeMax = Calendar.current.component(.year, from: Date()) // now
+        }
+        cell.pickerView.reloadAllComponents()
+        cell.setYear(isShowingPickerForMinYear ? minYear : maxYear)
         return cell
     }
     
@@ -69,6 +78,7 @@ class MovieFilterController: UITableViewController {
         // difficult logic of showing and hiding pickers
         
         tableView.beginUpdates()
+        tableView.reloadRows(at: [indexPath], with: .none)
         if indexPath.row == 0 {
             if isShowingPickerForMinYear {
                 // clicked min year to hide its picker
@@ -124,22 +134,17 @@ class MovieFilterController: UITableViewController {
     }
 }
 
-extension MovieFilterController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        // title is a year
-        return "\(row+MovieFilterController.minimumProductionYear)"
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+extension MovieFilterController: PickerCellDelegate {
+    func pickerCell(_ pickerCell: PickerCell, didSelectYear year: Int) {
         // set year
         if isShowingPickerForMinYear {
-            minYear = row + MovieFilterController.minimumProductionYear
+            minYear = year
         } else if isShowingPickerForMaxYear {
-            maxYear = row + MovieFilterController.minimumProductionYear
+            maxYear = year
         }
         // reload data to show the year set
         self.tableView.reloadData()
-     
+        
         // notify delegate
         if let delegate = self.delegate {
             delegate.movieFilter(self, didSelectMinYear: minYear, maxYear: maxYear)

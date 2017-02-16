@@ -175,6 +175,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <connections>
                                                 <outlet property="dataSource" destination="wLy-in-Jwy" id="b05-bE-Ejz"/>
+                                                <outlet property="delegate" destination="wLy-in-Jwy" id="3hr-5f-SGb"/>
                                             </connections>
                                         </pickerView>
                                     </subviews>
