@@ -14,13 +14,13 @@
         <!--Popular Movies-->
         <scene sceneID="zLf-Uy-3KT">
             <objects>
-                <tableViewController id="EEc-5w-KGN" sceneMemberID="viewController">
+                <tableViewController id="EEc-5w-KGN" customClass="MovieTableController" customModule="Awesome_Movie_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" id="U1s-UG-QvD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MovieCell" id="sjE-fO-cfJ" userLabel="MovieCell" customClass="MasterViewCell" customModule="Awesome_Movie_App" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MovieCell" id="sjE-fO-cfJ" userLabel="MovieCell" customClass="MovieCell" customModule="Awesome_Movie_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="97"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sjE-fO-cfJ" id="KGx-Eq-IVk">
@@ -59,10 +59,10 @@
                                     <outlet property="activityIndicator" destination="YiX-df-HFO" id="x8d-ld-BzS"/>
                                     <outlet property="posterImageView" destination="B6O-Jb-sZe" id="hbX-xX-J7G"/>
                                     <outlet property="titleLabel" destination="ydd-wz-Jef" id="KAr-W8-zdv"/>
-                                    <segue destination="u9z-9Q-5oy" kind="show" id="qNf-sz-E90"/>
+                                    <segue destination="u9z-9Q-5oy" kind="show" identifier="ShowDetail" id="qNf-sz-E90"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" id="ynC-IY-Kh3" userLabel="LoadingCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LoadingCell" id="ynC-IY-Kh3" userLabel="LoadingCell" customClass="LoadingCell" customModule="Awesome_Movie_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="125" width="320" height="97"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ynC-IY-Kh3" id="aXx-zf-4E1">
@@ -83,6 +83,9 @@
                                         <constraint firstItem="xpN-vz-j07" firstAttribute="centerX" secondItem="aXx-zf-4E1" secondAttribute="centerX" id="6hs-J8-IMb"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="activityIndicator" destination="xpN-vz-j07" id="Lb1-EQ-q1A"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -92,13 +95,17 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Popular Movies" id="wji-Iy-uGO">
+                        <barButtonItem key="backBarButtonItem" title="Popular" id="32k-Bl-q02"/>
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="T8y-b3-PdR">
                             <connections>
-                                <segue destination="Qes-Dp-btk" kind="show" id="ghd-Nf-znG"/>
+                                <segue destination="Qes-Dp-btk" kind="show" identifier="ShowFilter" id="ghd-Nf-znG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="2Jj-lr-my4">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pv5-cO-3yW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -244,7 +251,7 @@
         <!--Movie Detail-->
         <scene sceneID="Umw-1r-aMm">
             <objects>
-                <viewController title="Movie Detail" id="u9z-9Q-5oy" customClass="DetailViewController" customModule="Awesome_Movie_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Movie Detail" id="u9z-9Q-5oy" customClass="MovieDetailController" customModule="Awesome_Movie_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PRc-yq-HvW"/>
                         <viewControllerLayoutGuide type="bottom" id="9iB-oa-3i7"/>
