@@ -23,13 +23,14 @@ class MovieEntityTests: XCTestCase {
     
     func testThatMovieEntityIsInitilizedWithCorrectDictionary() {
         // given
-        let movieDictionary = ["id":1, "title":"The Amazing Movie", "backdrop_path":"/image21576.jpg", "release_date":"2017-01-01", "overview":"The best movie ever made."] as [String : Any]
+        let movieDictionary = ["id":-1, "title":"The Amazing Movie", "backdrop_path":"/image21576.jpg", "release_date":"2017-01-01", "overview":"The best movie ever made."] as [String : Any]
+        // negative id is to avoid interception with actual app data, which may present movie with any nonzero positive id and save cached image
         
         // when
         let movie = MovieEntity(withDictionary: movieDictionary)
         
         // then
-        XCTAssert(movie.movieId == 1, "Wrong movie id was set.")
+        XCTAssert(movie.movieId == -1, "Wrong movie id was set.")
         XCTAssert(movie.title == "The Amazing Movie", "Wrong title was set.")
         XCTAssert(movie.posterPath == "/image21576.jpg", "Wrong poster path was set.")
         XCTAssert(movie.releaseYear == 2017, "Wrong release year was set.")
@@ -86,7 +87,7 @@ class MovieEntityTests: XCTestCase {
     func testThatImageSetIsImageGot() {
         // given 
         let imageSet = UIImage(data:UIImagePNGRepresentation(#imageLiteral(resourceName: "icon"))!)! // this construct removes scale factor which would change when saving
-        let movieDictionary = ["id":1, "title":"The Amazing Movie", "backdrop_path":"/image21576.jpg", "release_date":"2017-01-01", "overview":"The best movie ever made."] as [String : Any]
+        let movieDictionary = ["id":-2, "title":"The Amazing Movie", "backdrop_path":"/image21576.jpg", "release_date":"2017-01-01", "overview":"The best movie ever made."] as [String : Any]
         let movie = MovieEntity(withDictionary: movieDictionary)
         
         // when

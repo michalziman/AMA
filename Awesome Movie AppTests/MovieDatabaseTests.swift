@@ -60,6 +60,7 @@ class MovieDatabaseTests: XCTestCase {
     // MARK: - Checks of results from API calls
     // Demonstrates the power of unit tests not only to test units of own code, but also to check for possible changes and discrepancies in API
     // Or gain insight into partial results before UI is complete
+    // Mind you have internet connection!
     
     func testCheckResultForPopularMoviesQuery() {
         // given

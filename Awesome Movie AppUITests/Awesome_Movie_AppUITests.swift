@@ -28,9 +28,28 @@ class Awesome_Movie_AppUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testExampleEndToEndForFilter() {
+        // Just an experimental example
+        // Mind you have internet connection!
+        
+        let app = XCUIApplication()
+        
+        // Go to filter
+        app.navigationBars["Popular Movies"].buttons["Filter"].tap()
+        
+        // Play a bit with range
+        let tablesQuery = app.tables
+        tablesQuery.staticTexts["1890"].tap()
+        tablesQuery.pickerWheels["1890"].swipeUp()
+        
+        tablesQuery.staticTexts["2017"].tap()
+        tablesQuery.pickerWheels["2017"].swipeDown()
+
+        // Return to Popular table
+        app.navigationBars["Filter"].buttons["Popular"].tap()
+        
+        // Check that Star Wars movie is here
+        XCTAssertNotNil(tablesQuery.cells.staticTexts["Star Wars"], "Star Wars should be visible.")
     }
     
 }
