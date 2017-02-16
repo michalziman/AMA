@@ -59,7 +59,7 @@ extension PickerCell: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // get year
-        var resultYear = pickerRangeMin + row
+        let resultYear = pickerRangeMin + row
         
         // notify delegate
         if let delegate = self.delegate {
