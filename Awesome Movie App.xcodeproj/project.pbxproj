@@ -18,6 +18,8 @@
 		9010E9711E5611F200AB6483 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9010E9701E5611F200AB6483 /* LoadingCell.swift */; };
 		9010E9731E5614A300AB6483 /* MovieDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9010E9721E5614A300AB6483 /* MovieDetailController.swift */; };
 		9010E9771E56202100AB6483 /* MovieFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9010E9761E56202100AB6483 /* MovieFilterController.swift */; };
+		9010E9791E56252600AB6483 /* YearCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9010E9781E56252600AB6483 /* YearCell.swift */; };
+		9010E97B1E56254000AB6483 /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9010E97A1E56254000AB6483 /* PickerCell.swift */; };
 		906BEE241E55B4660091BAA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906BEE231E55B4660091BAA3 /* AppDelegate.swift */; };
 		906BEE291E55B4660091BAA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 906BEE271E55B4660091BAA3 /* Main.storyboard */; };
 		906BEE2B1E55B4660091BAA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 906BEE2A1E55B4660091BAA3 /* Assets.xcassets */; };
@@ -55,6 +57,8 @@
 		9010E9701E5611F200AB6483 /* LoadingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		9010E9721E5614A300AB6483 /* MovieDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailController.swift; sourceTree = "<group>"; };
 		9010E9761E56202100AB6483 /* MovieFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieFilterController.swift; sourceTree = "<group>"; };
+		9010E9781E56252600AB6483 /* YearCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearCell.swift; sourceTree = "<group>"; };
+		9010E97A1E56254000AB6483 /* PickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
 		906BEE201E55B4660091BAA3 /* Awesome Movie App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Awesome Movie App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		906BEE231E55B4660091BAA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		906BEE281E55B4660091BAA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,9 +134,11 @@
 			children = (
 				906BEE231E55B4660091BAA3 /* AppDelegate.swift */,
 				9010E9631E55D47700AB6483 /* MovieTableController.swift */,
-				9010E9761E56202100AB6483 /* MovieFilterController.swift */,
 				9010E96E1E5611E100AB6483 /* MovieCell.swift */,
 				9010E9701E5611F200AB6483 /* LoadingCell.swift */,
+				9010E9761E56202100AB6483 /* MovieFilterController.swift */,
+				9010E9781E56252600AB6483 /* YearCell.swift */,
+				9010E97A1E56254000AB6483 /* PickerCell.swift */,
 				9010E9721E5614A300AB6483 /* MovieDetailController.swift */,
 				9010E9651E55D4DF00AB6483 /* MovieDatabase.swift */,
 				9010E9671E55D4F000AB6483 /* MovieEntity.swift */,
@@ -472,12 +478,14 @@
 			files = (
 				9010E9771E56202100AB6483 /* MovieFilterController.swift in Sources */,
 				9010E9681E55D4F000AB6483 /* MovieEntity.swift in Sources */,
+				9010E9791E56252600AB6483 /* YearCell.swift in Sources */,
 				9010E9731E5614A300AB6483 /* MovieDetailController.swift in Sources */,
 				9010E96F1E5611E100AB6483 /* MovieCell.swift in Sources */,
 				9010E9641E55D47700AB6483 /* MovieTableController.swift in Sources */,
 				9010E9711E5611F200AB6483 /* LoadingCell.swift in Sources */,
 				906BEE241E55B4660091BAA3 /* AppDelegate.swift in Sources */,
 				9010E9661E55D4DF00AB6483 /* MovieDatabase.swift in Sources */,
+				9010E97B1E56254000AB6483 /* PickerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,8 @@ class MovieTableController: UITableViewController {
 
     var allMovies = [MovieEntity]()
     var filteredMovies = [MovieEntity]()
-    var filterQuery = ""
+    var filterMinimum = MovieFilterController.minimumProductionYear
+    var filterMaximum = Calendar.current.component(.year, from: Date()) // now
     var pagesLoaded = 0
     
     override func viewDidLoad() {
@@ -36,7 +37,7 @@ class MovieTableController: UITableViewController {
                 // if there are some, display them and stop refresh controller UI feedback
                 DispatchQueue.main.async {
                     self.allMovies = movies
-                    self.filterWithQuery(self.filterQuery)
+                    self.filterMovies()
                     self.refreshControl?.endRefreshing()
                     self.pagesLoaded = 1
                 }
@@ -65,40 +66,51 @@ class MovieTableController: UITableViewController {
         }
     }
     
-    func filterWithQuery(_ query:String) {
-        filterQuery = query.lowercased()
-        
-        if query == "" {
+    func filterMovies() {
+        let yearNow = Calendar.current.component(.year, from: Date())
+        if filterMinimum == MovieFilterController.minimumProductionYear && filterMaximum == yearNow {
+            // if range is maximum, do not filter, neither show range
             filteredMovies = allMovies
+            self.navigationItem.prompt = nil
         } else {
-            let queryWords = filterQuery.components(separatedBy: CharacterSet(charactersIn: " ,"))
+            // filter movies
             filteredMovies = allMovies.filter({ (movie) -> Bool in
-                for word in queryWords {
-                    if movie.title.lowercased().contains(word) {
-                        return true
-                    }
+                if movie.releaseYear >= filterMinimum && movie.releaseYear <= filterMaximum {
+                    return true
                 }
                 return false
             })
+            // show range
+            self.navigationItem.prompt = "\(filterMinimum) – \(filterMaximum)"
         }
         
         self.tableView.reloadData()
+        
+        // if there is nothing after filtering, load next page
+        if filteredMovies.count < 1 {
+            loadNextPage()
+        }
     }
     
     func loadNextPage() {
-        MovieDatabase.sharedInstance.getPopularMovies(onPage: pagesLoaded+1, withCallback: { (movies) in
+        let loadedPage = pagesLoaded + 1
+        MovieDatabase.sharedInstance.getPopularMovies(onPage: loadedPage, withCallback: { (movies) in
             if movies.count > 0 {
                 // if there are some, display them and stop refresh controller UI feedback
                 DispatchQueue.main.async {
+                    if self.pagesLoaded + 1 != loadedPage {
+                        // the async response arrived after reloading, would shuffle results, so just ignore it
+                        return
+                    }
                     // remember number of filtered items
                     let numberOfFiltered = self.filteredMovies.count
                     // append movies from next page
                     self.allMovies.append(contentsOf: movies)
                     // filter
-                    self.filterWithQuery(self.filterQuery)
+                    self.filterMovies()
                     self.pagesLoaded += 1
                     // if there is no new filtered items and yet the query is not nonsense, load next page
-                    if self.filteredMovies.count <= numberOfFiltered && numberOfFiltered > 0 {
+                    if self.filteredMovies.count <= numberOfFiltered{
                         self.loadNextPage()
                     }
                 }
@@ -131,7 +143,11 @@ class MovieTableController: UITableViewController {
                 controller.movie = filteredMovies[indexPath.row]
             }
         } else if segue.identifier == "ShowFilter" {
-            // TODO
+            // set border years and self as delegate
+            let controller = segue.destination as! MovieFilterController
+            controller.minYear = filterMinimum
+            controller.maxYear = filterMaximum
+            controller.delegate = self
         }
     }
     
@@ -142,10 +158,7 @@ class MovieTableController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if filteredMovies.count == 0 {
-            return 0
-        }
-        return filteredMovies.count + 1
+        return filteredMovies.count + 1 // plus one to show loading indicator on bottom
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -165,5 +178,17 @@ class MovieTableController: UITableViewController {
             loadNextPage()
         }
         return cell
+    }
+}
+
+extension MovieTableController: MovieFilterDelegate {
+    func movieFilter(_ movieFilter: MovieFilterController, didSelectMinYear minYear: Int, maxYear: Int) {
+        // remember borders
+        filterMinimum = minYear
+        filterMaximum = maxYear
+        
+        // and refresh
+        self.refreshControl?.beginRefreshing()
+        handleRefresh()
     }
 }

@@ -114,114 +114,114 @@
         <!--Filter-->
         <scene sceneID="CqW-cb-9Gf">
             <objects>
-                <tableViewController title="Filter" id="Qes-Dp-btk" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rbs-NE-3ba">
+                <tableViewController title="Filter" id="Qes-Dp-btk" customClass="MovieFilterController" customModule="Awesome_Movie_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rbs-NE-3ba">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <sections>
-                            <tableViewSection id="Qah-8R-nX0">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XGh-Ug-ItW">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XGh-Ug-ItW" id="QJH-9G-gp7">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOq-Pi-0nC">
-                                                    <rect key="frame" x="8" y="14" width="112" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="112" id="JW9-JP-ZWa"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1890" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1K-F1-nJi">
-                                                    <rect key="frame" x="128" y="14" width="184" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="m9x-Jb-Xtr">
+                            <rect key="frame" x="0.0" y="333" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MinYearCell" id="XGh-Ug-ItW" customClass="YearCell" customModule="Awesome_Movie_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XGh-Ug-ItW" id="QJH-9G-gp7">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOq-Pi-0nC">
+                                            <rect key="frame" x="8" y="14" width="112" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="i1K-F1-nJi" secondAttribute="trailing" constant="8" id="E4T-OX-C9p"/>
-                                                <constraint firstItem="hOq-Pi-0nC" firstAttribute="leading" secondItem="QJH-9G-gp7" secondAttribute="leading" constant="8" id="Jzq-vA-OXz"/>
-                                                <constraint firstItem="i1K-F1-nJi" firstAttribute="top" secondItem="hOq-Pi-0nC" secondAttribute="top" id="QIz-8C-Wue"/>
-                                                <constraint firstItem="hOq-Pi-0nC" firstAttribute="top" secondItem="QJH-9G-gp7" secondAttribute="top" constant="14" id="XgU-Np-jRr"/>
-                                                <constraint firstAttribute="bottom" secondItem="hOq-Pi-0nC" secondAttribute="bottom" constant="8" id="fAD-xu-eqS"/>
-                                                <constraint firstItem="i1K-F1-nJi" firstAttribute="leading" secondItem="hOq-Pi-0nC" secondAttribute="trailing" constant="8" id="hLM-pA-lsZ"/>
-                                                <constraint firstItem="i1K-F1-nJi" firstAttribute="bottom" secondItem="hOq-Pi-0nC" secondAttribute="bottom" id="pQR-kU-Kwc"/>
+                                                <constraint firstAttribute="width" constant="112" id="JW9-JP-ZWa"/>
                                             </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="217" id="wLy-in-Jwy">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="217"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wLy-in-Jwy" id="uuj-KA-2EQ">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1890" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1K-F1-nJi">
+                                            <rect key="frame" x="128" y="14" width="184" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="i1K-F1-nJi" secondAttribute="trailing" constant="8" id="E4T-OX-C9p"/>
+                                        <constraint firstItem="hOq-Pi-0nC" firstAttribute="leading" secondItem="QJH-9G-gp7" secondAttribute="leading" constant="8" id="Jzq-vA-OXz"/>
+                                        <constraint firstItem="i1K-F1-nJi" firstAttribute="top" secondItem="hOq-Pi-0nC" secondAttribute="top" id="QIz-8C-Wue"/>
+                                        <constraint firstItem="hOq-Pi-0nC" firstAttribute="top" secondItem="QJH-9G-gp7" secondAttribute="top" constant="14" id="XgU-Np-jRr"/>
+                                        <constraint firstAttribute="bottom" secondItem="hOq-Pi-0nC" secondAttribute="bottom" constant="8" id="fAD-xu-eqS"/>
+                                        <constraint firstItem="i1K-F1-nJi" firstAttribute="leading" secondItem="hOq-Pi-0nC" secondAttribute="trailing" constant="8" id="hLM-pA-lsZ"/>
+                                        <constraint firstItem="i1K-F1-nJi" firstAttribute="bottom" secondItem="hOq-Pi-0nC" secondAttribute="bottom" id="pQR-kU-Kwc"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="yearLabel" destination="i1K-F1-nJi" id="U05-HC-kjS"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PickerCell" rowHeight="217" id="wLy-in-Jwy" userLabel="PickerCell" customClass="PickerCell" customModule="Awesome_Movie_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="320" height="217"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wLy-in-Jwy" id="uuj-KA-2EQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sah-aW-dKg">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sah-aW-dKg">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                </pickerView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="PEf-Wp-At6">
-                                        <rect key="frame" x="0.0" y="261" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PEf-Wp-At6" id="awY-F9-gLq">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6i-Wi-B2q">
-                                                    <rect key="frame" x="8" y="14" width="112" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="112" id="HHW-RJ-Bwk"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxK-t1-VyS">
-                                                    <rect key="frame" x="128" y="14" width="184" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <outlet property="dataSource" destination="wLy-in-Jwy" id="b05-bE-Ejz"/>
+                                            </connections>
+                                        </pickerView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="pickerView" destination="sah-aW-dKg" id="lgH-jm-E4f"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MaxYearCell" id="PEf-Wp-At6" customClass="YearCell" customModule="Awesome_Movie_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="289" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PEf-Wp-At6" id="awY-F9-gLq">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6i-Wi-B2q">
+                                            <rect key="frame" x="8" y="14" width="112" height="21"/>
                                             <constraints>
-                                                <constraint firstItem="p6i-Wi-B2q" firstAttribute="top" secondItem="awY-F9-gLq" secondAttribute="top" constant="14" id="1mi-f9-kcA"/>
-                                                <constraint firstItem="ZxK-t1-VyS" firstAttribute="top" secondItem="p6i-Wi-B2q" secondAttribute="top" id="6Ut-cP-riu"/>
-                                                <constraint firstItem="ZxK-t1-VyS" firstAttribute="bottom" secondItem="p6i-Wi-B2q" secondAttribute="bottom" id="Dpp-Ao-EP4"/>
-                                                <constraint firstAttribute="bottom" secondItem="p6i-Wi-B2q" secondAttribute="bottom" constant="8" id="MdG-pJ-71R"/>
-                                                <constraint firstItem="ZxK-t1-VyS" firstAttribute="leading" secondItem="p6i-Wi-B2q" secondAttribute="trailing" constant="8" id="Z84-wT-9bJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="ZxK-t1-VyS" secondAttribute="trailing" constant="8" id="Ziq-Ek-wXi"/>
-                                                <constraint firstItem="p6i-Wi-B2q" firstAttribute="leading" secondItem="awY-F9-gLq" secondAttribute="leading" constant="8" id="pl1-V2-i8A"/>
+                                                <constraint firstAttribute="width" constant="112" id="HHW-RJ-Bwk"/>
                                             </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="217" id="hCl-sz-Fq7">
-                                        <rect key="frame" x="0.0" y="305" width="320" height="217"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hCl-sz-Fq7" id="OW7-Is-Ip3">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lt7-qh-Mzv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                </pickerView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxK-t1-VyS">
+                                            <rect key="frame" x="128" y="14" width="184" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="p6i-Wi-B2q" firstAttribute="top" secondItem="awY-F9-gLq" secondAttribute="top" constant="14" id="1mi-f9-kcA"/>
+                                        <constraint firstItem="ZxK-t1-VyS" firstAttribute="top" secondItem="p6i-Wi-B2q" secondAttribute="top" id="6Ut-cP-riu"/>
+                                        <constraint firstItem="ZxK-t1-VyS" firstAttribute="bottom" secondItem="p6i-Wi-B2q" secondAttribute="bottom" id="Dpp-Ao-EP4"/>
+                                        <constraint firstAttribute="bottom" secondItem="p6i-Wi-B2q" secondAttribute="bottom" constant="8" id="MdG-pJ-71R"/>
+                                        <constraint firstItem="ZxK-t1-VyS" firstAttribute="leading" secondItem="p6i-Wi-B2q" secondAttribute="trailing" constant="8" id="Z84-wT-9bJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZxK-t1-VyS" secondAttribute="trailing" constant="8" id="Ziq-Ek-wXi"/>
+                                        <constraint firstItem="p6i-Wi-B2q" firstAttribute="leading" secondItem="awY-F9-gLq" secondAttribute="leading" constant="8" id="pl1-V2-i8A"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="yearLabel" destination="ZxK-t1-VyS" id="13f-LC-YnQ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="Qes-Dp-btk" id="p6F-Rv-I7O"/>
                             <outlet property="delegate" destination="Qes-Dp-btk" id="48Z-Cm-t92"/>
