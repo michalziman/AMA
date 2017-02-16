@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		077B883548C263FD5EBD1AE0 /* Pods_Awesome_Movie_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F721FC4EF42FF8CA953D08 /* Pods_Awesome_Movie_AppTests.framework */; };
 		664157BCC62204F8C5CC1B7F /* Pods_Awesome_Movie_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F36EF396DA00C4886B0FE6E /* Pods_Awesome_Movie_AppUITests.framework */; };
+		9010E9641E55D47700AB6483 /* MovieTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9010E9631E55D47700AB6483 /* MovieTableController.swift */; };
 		906BEE241E55B4660091BAA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906BEE231E55B4660091BAA3 /* AppDelegate.swift */; };
 		906BEE261E55B4660091BAA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906BEE251E55B4660091BAA3 /* ViewController.swift */; };
 		906BEE291E55B4660091BAA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 906BEE271E55B4660091BAA3 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		0EEE70DF9F3C57C49236DC57 /* Pods-Awesome Movie App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome Movie App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Awesome Movie App/Pods-Awesome Movie App.release.xcconfig"; sourceTree = "<group>"; };
 		2F36EF396DA00C4886B0FE6E /* Pods_Awesome_Movie_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Awesome_Movie_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9010E9631E55D47700AB6483 /* MovieTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTableController.swift; sourceTree = "<group>"; };
 		906BEE201E55B4660091BAA3 /* Awesome Movie App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Awesome Movie App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		906BEE231E55B4660091BAA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		906BEE251E55B4660091BAA3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				906BEE231E55B4660091BAA3 /* AppDelegate.swift */,
+				9010E9631E55D47700AB6483 /* MovieTableController.swift */,
 				906BEE251E55B4660091BAA3 /* ViewController.swift */,
 				906BEE271E55B4660091BAA3 /* Main.storyboard */,
 				906BEE2A1E55B4660091BAA3 /* Assets.xcassets */,
@@ -450,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				906BEE261E55B4660091BAA3 /* ViewController.swift in Sources */,
+				9010E9641E55D47700AB6483 /* MovieTableController.swift in Sources */,
 				906BEE241E55B4660091BAA3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,6 +711,7 @@
 				906BEE4A1E55B4660091BAA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		906BEE4B1E55B4660091BAA3 /* Build configuration list for PBXNativeTarget "Awesome Movie AppTests" */ = {
 			isa = XCConfigurationList;
@@ -715,6 +720,7 @@
 				906BEE4D1E55B4660091BAA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		906BEE4E1E55B4660091BAA3 /* Build configuration list for PBXNativeTarget "Awesome Movie AppUITests" */ = {
 			isa = XCConfigurationList;
@@ -723,6 +729,7 @@
 				906BEE501E55B4660091BAA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
