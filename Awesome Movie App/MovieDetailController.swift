@@ -19,6 +19,8 @@ class MovieDetailController: UIViewController {
     
     var movie: MovieEntity? {
         didSet {
+            updateView()
+            
             // Get missing information from movie database
             MovieDatabase.sharedInstance.getDetailsForMovie(movie!) { (movieDict) in
                 DispatchQueue.main.async {
@@ -39,20 +41,25 @@ class MovieDetailController: UIViewController {
     }
     
     func updateView() {
-        // Update the user interface for the detail item.
+        // check that movie is set and view already loaded
         guard let movie = self.movie else {
             return
         }
+        if self.view == nil {
+            return
+        }
         
+        // Update the user interface for the detail item.
         titleLabel.text = movie.title
         genresLabel.text = movie.genres.joined(separator: ", ")
         yearLabel.text = "\(movie.releaseYear)"
         overviewLabel.text = movie.overview
         
+        // check if image is already downloaded
         if let image = movie.image {
             imageView.image = image
         } else if activityIndicator.isHidden {
-            // using activityIndicator isHidden proverty to prevent launching multiple downloads
+            // using activityIndicator isHidden property to prevent launching multiple downloads
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
             // load image
@@ -74,7 +81,6 @@ class MovieDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         updateView()
     }
 }

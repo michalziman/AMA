@@ -130,6 +130,8 @@ class MovieTableController: UITableViewController {
                 let controller = segue.destination as! MovieDetailController
                 controller.movie = filteredMovies[indexPath.row]
             }
+        } else if segue.identifier == "ShowFilter" {
+            // TODO
         }
     }
     
