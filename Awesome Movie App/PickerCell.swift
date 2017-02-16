@@ -34,49 +34,33 @@ class PickerCell: UITableViewCell {
     }
     
     func setYear(_ year:Int) {
-        // set year and decade
-        pickerView.selectRow(year % 10, inComponent: 1, animated: false)
+        // set year
         let yearNormalized = year - pickerRangeMin
-        pickerView.selectRow(yearNormalized / 10, inComponent: 0, animated: false)
+        pickerView.selectRow(yearNormalized, inComponent: 0, animated: false)
     }
 }
 
 extension PickerCell: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        // picker is separated to components, to allow faster selecetion
         return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        // second component is only for year-by-year selection, first for decade
-        if component == 1 {
-            return 10
-        }
-        let rangeNormalized = pickerRangeMax - pickerRangeMin
-        return rangeNormalized/10 + 1
+        let rangeSize = pickerRangeMax - pickerRangeMin
+        return rangeSize + 1 // to include both ends
     }
 }
 
 extension PickerCell: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 1 {
-            return "\(row)"
-        }
-        return "\(row + pickerRangeMin/10)"
+
+        return "\(row + pickerRangeMin)"
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // get year
-        var resultYear = pickerRangeMin + pickerView.selectedRow(inComponent: 1) + 10 * pickerView.selectedRow(inComponent: 0)
+        var resultYear = pickerRangeMin + row
         
-        if resultYear > pickerRangeMax {
-            self.setYear(pickerRangeMax)
-            resultYear = pickerRangeMax
-        }
-        if resultYear < pickerRangeMin {
-            self.setYear(pickerRangeMin)
-            resultYear = pickerRangeMin
-        }
         // notify delegate
         if let delegate = self.delegate {
             delegate.pickerCell(self, didSelectYear: resultYear)
