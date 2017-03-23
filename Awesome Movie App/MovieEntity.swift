@@ -15,8 +15,11 @@ class MovieEntity: NSObject {
     let releaseYear: Int
     var genres: [String]
     var overview: String
+    
+    // TODO add trailer link and trailer playback in detail
 
     // Downloaded image is saved to temp directory (lasts cca 2 days there) as a cache
+    // Both methods should be used on background thread
     var imageURL: URL {
         return URL(fileURLWithPath:NSTemporaryDirectory()).appendingPathComponent("\(movieId).png")
     }
@@ -38,11 +41,12 @@ class MovieEntity: NSObject {
     }
     
     init(withDictionary dictionary:[String:Any]) {
+        // TODO move otpionals to UI
         movieId = (dictionary["id"] as? NSNumber) ?? 0
         title = (dictionary["title"] as? String) ?? "No Title"
         posterPath = (dictionary["backdrop_path"] as? String) ?? "" // backdrop_path seems more fitting than poster_path
         
-        let dateFormatter = DateFormatter()
+        let dateFormatter = DateFormatter() // TODO static
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateString = (dictionary["release_date"] as? String) ?? ""
         if let date = dateFormatter.date(from: dateString) {

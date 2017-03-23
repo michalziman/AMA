@@ -20,7 +20,10 @@ class MovieCell: UITableViewCell {
             titleLabel.text = movie?.title
             self.posterImageView.image = nil
             if movie != nil {
-                loadImageForMovie(movie!)
+                // Image loading is done in background to avoid tiny freezes while scrolling
+                DispatchQueue.global(qos: .background).async {
+                    self.loadImageForMovie(self.movie!)
+                }
             }
         }
     }
@@ -28,14 +31,18 @@ class MovieCell: UITableViewCell {
     func loadImageForMovie(_ movie:MovieEntity) {
         if let alreadyLoadedImage = movie.image {
             // if movie already has image saved in temp directory, show it in image view
-            posterImageView.image = alreadyLoadedImage
-            self.activityIndicator.stopAnimating()
+            DispatchQueue.main.async {
+                self.posterImageView.image = alreadyLoadedImage
+                self.activityIndicator.stopAnimating()
+            }
             return
         }
         
         // show spinner
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+        }
         
         // load image
         if movie.posterPath != "" {

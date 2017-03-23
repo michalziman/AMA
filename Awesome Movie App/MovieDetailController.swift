@@ -24,6 +24,8 @@ class MovieDetailController: UIViewController {
             // Get missing information from movie database
             MovieDatabase.sharedInstance.getDetailsForMovie(movie!) { (movieDict) in
                 DispatchQueue.main.async {
+                    
+                    // TODO move to entity
                     // set genres and overview
                     let genresDictionaries = movieDict["genres"] as? [[String:Any]] ?? []
                     var movieGenres = [String]()
