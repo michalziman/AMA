@@ -23,6 +23,13 @@ class MovieCell: UITableViewCell {
                 // Image loading is done in background to avoid tiny freezes while scrolling
                 DispatchQueue.global(qos: .background).async {
                     self.loadImageForMovie(self.movie!)
+                    // Get missing details before displaying details, so that displaying is smoother. The cost of date is not much for this purpose.
+                    MovieDatabase.sharedInstance.getDetailsForMovie(self.movie!) { (movieDict) in
+                        DispatchQueue.main.async {
+                            // set genres
+                            self.movie?.parseGenres(fromDictionary: movieDict)
+                        }
+                    }
                 }
             }
         }

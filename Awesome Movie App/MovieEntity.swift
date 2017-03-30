@@ -16,6 +16,8 @@ class MovieEntity: NSObject {
     var genres: [String]
     var overview: String
     
+    private static let dateFormatter = DateFormatter()
+    
     // TODO add trailer link and trailer playback in detail
 
     // Downloaded image is saved to temp directory (lasts cca 2 days there) as a cache
@@ -46,10 +48,9 @@ class MovieEntity: NSObject {
         title = (dictionary["title"] as? String) ?? "No Title"
         posterPath = (dictionary["backdrop_path"] as? String) ?? "" // backdrop_path seems more fitting than poster_path
         
-        let dateFormatter = DateFormatter() // TODO static
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        MovieEntity.dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateString = (dictionary["release_date"] as? String) ?? ""
-        if let date = dateFormatter.date(from: dateString) {
+        if let date = MovieEntity.dateFormatter.date(from: dateString) {
             releaseYear = Calendar.current.component(.year, from:date)
         } else {
             releaseYear = 0
@@ -59,6 +60,17 @@ class MovieEntity: NSObject {
         
         genres = [] // genres described in words are not present in movie list, only detailed info
         overview = (dictionary["overview"] as? String) ?? ""
+    }
+    
+    func parseGenres(fromDictionary dictionary:[String:Any]) {
+        let genresDictionaries = dictionary["genres"] as? [[String:Any]] ?? []
+        var movieGenres = [String]()
+        for genreDict in genresDictionaries {
+            if let genreName = genreDict["name"] as? String {
+                movieGenres.append(genreName)
+            }
+        }
+        self.genres = movieGenres
     }
     
     override var description: String {

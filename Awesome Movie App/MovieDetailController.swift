@@ -21,21 +21,15 @@ class MovieDetailController: UIViewController {
         didSet {
             updateView()
             
-            // Get missing information from movie database
+            // Get missing information from movie database, or return if genres are already loaded
+            if movie!.genres.count > 0 {
+                return
+            }
+            
             MovieDatabase.sharedInstance.getDetailsForMovie(movie!) { (movieDict) in
                 DispatchQueue.main.async {
-                    
-                    // TODO move to entity
-                    // set genres and overview
-                    let genresDictionaries = movieDict["genres"] as? [[String:Any]] ?? []
-                    var movieGenres = [String]()
-                    for genreDict in genresDictionaries {
-                        if let genreName = genreDict["name"] as? String {
-                            movieGenres.append(genreName)
-                        }
-                    }
-                    self.movie?.genres = movieGenres
-                    
+                    // set genres
+                    self.movie?.parseGenres(fromDictionary: movieDict)
                     self.updateView()
                 }
             }
