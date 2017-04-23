@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import youtube_ios_player_helper
 
 class MovieDetailController: UIViewController {
 
@@ -16,6 +17,10 @@ class MovieDetailController: UIViewController {
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    
+    @IBOutlet var playTrailerButton: UIBarButtonItem!
+    
+    var trailerView:YTPlayerView? = nil
     
     var movie: MovieEntity? {
         didSet {
@@ -77,6 +82,62 @@ class MovieDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(stopTrailer), name: .UIWindowDidBecomeHidden, object: nil)
         updateView()
+    }
+    
+    @IBAction func playTrailer(_ sender: Any) {
+        navigationItem.rightBarButtonItem = nil
+//        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+//            return
+//        }
+//        delegate.desiredOrientation = UIInterfaceOrientationMask.landscape
+//        let value = UIInterfaceOrientation.landscapeRight.rawValue
+//        UIDevice.current.setValue(value, forKey: "orientation")
+        
+        navigationItem.hidesBackButton = true
+        
+        let playerView = YTPlayerView(frame: view.frame)
+        trailerView = playerView
+//        playerView.isHidden = true
+        view.addSubview(playerView)
+        playerView.delegate = self
+        playerView.load(withVideoId: "Ud8j5GaqH3c", playerVars: ["playsinline" : 0]) //Vogou6DN97w, Ud8j5GaqH3c
+    }
+    
+    func stopTrailer() {
+        trailerView?.stopVideo()
+        trailerView?.removeFromSuperview()
+        trailerView = nil
+        
+        navigationItem.hidesBackButton = false
+        
+//        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+//            return
+//        }
+//        delegate.desiredOrientation = UIInterfaceOrientationMask.portrait
+//        let value = UIInterfaceOrientation.portrait.rawValue
+//        UIDevice.current.setValue(value, forKey: "orientation")
+
+        navigationItem.rightBarButtonItem = playTrailerButton
+    }
+}
+
+extension MovieDetailController: YTPlayerViewDelegate {
+    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+        playerView.playVideo()
+    }
+    
+    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
+        if state == .unstarted {
+            // TODO show message
+            stopTrailer()
+            return
+        }
+    }
+    
+    func playerView(_ playerView: YTPlayerView, receivedError error: YTPlayerError) {
+        // TODO display simple error message
+        stopTrailer()
     }
 }

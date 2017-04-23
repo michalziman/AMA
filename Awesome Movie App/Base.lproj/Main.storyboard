@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i1j-U8-qbK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i1j-U8-qbK">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -371,12 +371,19 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Movie Detail" id="fQk-kZ-qSv"/>
+                    <navigationItem key="navigationItem" title="Movie Detail" id="fQk-kZ-qSv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="jFo-Ws-np8">
+                            <connections>
+                                <action selector="playTrailer:" destination="u9z-9Q-5oy" id="TK4-tS-gBd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="asn-tW-ICJ" id="nlM-mg-iId"/>
                         <outlet property="genresLabel" destination="fpt-52-S8A" id="Rmj-iE-mJP"/>
                         <outlet property="imageView" destination="6hs-Xg-6Hg" id="fh1-Vn-yx0"/>
                         <outlet property="overviewLabel" destination="n6c-tQ-mpo" id="Bf0-FJ-azF"/>
+                        <outlet property="playTrailerButton" destination="jFo-Ws-np8" id="IB1-uo-olr"/>
                         <outlet property="titleLabel" destination="Px8-zt-dBw" id="NDs-UI-vSs"/>
                         <outlet property="yearLabel" destination="SVJ-0S-hih" id="SqL-yG-98n"/>
                     </connections>
