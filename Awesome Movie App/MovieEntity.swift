@@ -10,11 +10,11 @@ import UIKit
 
 class MovieEntity: NSObject {
     let movieId: NSNumber
-    let title: String
-    let posterPath: String
+    let title: String?
+    let posterPath: String?
     let releaseYear: Int
     var genres: [String]
-    var overview: String
+    var overview: String?
     var trailerYoutubeId: String?
     
     private static let dateFormatter = DateFormatter()
@@ -42,10 +42,9 @@ class MovieEntity: NSObject {
     }
     
     init(withDictionary dictionary:[String:Any]) {
-        // TODO move otpionals to UI
         movieId = (dictionary["id"] as? NSNumber) ?? 0
-        title = (dictionary["title"] as? String) ?? "No Title"
-        posterPath = (dictionary["backdrop_path"] as? String) ?? "" // backdrop_path seems more fitting than poster_path
+        title = (dictionary["title"] as? String)
+        posterPath = (dictionary["backdrop_path"] as? String)// backdrop_path seems more fitting than poster_path
         
         MovieEntity.dateFormatter.dateFormat = "yyyy-MM-dd"
         let dateString = (dictionary["release_date"] as? String) ?? ""
@@ -58,7 +57,7 @@ class MovieEntity: NSObject {
         }
         
         genres = [] // genres described in words are not present in movie list, only detailed info
-        overview = (dictionary["overview"] as? String) ?? ""
+        overview = (dictionary["overview"] as? String)
     }
     
     func parseGenres(fromDictionary dictionary:[String:Any]) {
@@ -73,6 +72,6 @@ class MovieEntity: NSObject {
     }
     
     override var description: String {
-        return "\nMovieEntity: \n\tid: \(movieId), \n\tTitle: \"\(title)\", \n\tPoster Path: \"\(posterPath)\", \n\tRelease Year: \(releaseYear), \n\tGenres: \(genres), \n\tOverview: \"\(overview)\"\n"
+        return "\nMovieEntity: \n\tid: \(movieId), \n\tTitle: \"\(title ?? "nil")\", \n\tPoster Path: \"\(posterPath ?? "nil")\", \n\tRelease Year: \(releaseYear), \n\tGenres: \(genres), \n\tOverview: \"\(overview ?? "nil")\"\n"
     }
 }

@@ -34,10 +34,9 @@ class TrailerController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            delegate.desiredOrientation = UIInterfaceOrientationMask.landscape
         }
-        delegate.desiredOrientation = UIInterfaceOrientationMask.landscape
         let value = UIInterfaceOrientation.landscapeRight.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         
@@ -63,10 +62,9 @@ class TrailerController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            delegate.desiredOrientation = UIInterfaceOrientationMask.portrait
         }
-        delegate.desiredOrientation = UIInterfaceOrientationMask.portrait
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
     }

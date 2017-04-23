@@ -54,10 +54,10 @@ class MovieDetailController: UIViewController {
         }
         
         // Update the user interface for the detail item.
-        titleLabel.text = movie.title
+        titleLabel.text = movie.title ?? "No title"
         genresLabel.text = movie.genres.joined(separator: ", ")
         yearLabel.text = "\(movie.releaseYear)"
-        overviewLabel.text = movie.overview
+        overviewLabel.text = movie.overview ?? "No overview"
         
         // check if image is already downloaded
         if let image = movie.image {
@@ -67,8 +67,8 @@ class MovieDetailController: UIViewController {
             activityIndicator.isHidden = false
             activityIndicator.startAnimating()
             // load image
-            if movie.posterPath != "" {
-                MovieDatabase.sharedInstance.downloadMovieImage(movie.posterPath, withCallback: { (downloadedImage) in
+            if let posterPath = movie.posterPath {
+                MovieDatabase.sharedInstance.downloadMovieImage(posterPath, withCallback: { (downloadedImage) in
                     DispatchQueue.main.async {
                         if downloadedImage != nil {
                             // if download succeeded, save image for the movie to temp directory

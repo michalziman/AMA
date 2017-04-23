@@ -58,8 +58,8 @@ class MovieCell: UITableViewCell {
         }
         
         // load image
-        if movie.posterPath != "" {
-            MovieDatabase.sharedInstance.downloadMovieImage(movie.posterPath, withCallback: { (downloadedImage) in
+        if let posterPath = movie.posterPath {
+            MovieDatabase.sharedInstance.downloadMovieImage(posterPath, withCallback: { (downloadedImage) in
                 DispatchQueue.main.async {
                     // stop spinner when image is loaded, successfully or not
                     self.activityIndicator.stopAnimating()
