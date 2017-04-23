@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import youtube-ios-player-helper
 
 class MovieDetailController: UIViewController {
 

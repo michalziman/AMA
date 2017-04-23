@@ -4,9 +4,10 @@ use_frameworks!
 
 def use_pods
     pod 'AFNetworking', '~> 3.0'
+    pod 'youtube-ios-player-helper', '~> 0.1.6'
 end
 
-target ‘Awesome Movie App’ do
+target 'Awesome Movie App' do
     use_pods
 end
 
