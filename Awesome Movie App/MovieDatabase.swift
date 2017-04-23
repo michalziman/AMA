@@ -15,6 +15,7 @@ class MovieDatabase: NSObject {
         private static let imageURLPrefix = "https://image.tmdb.org/t/p/w342"
         private static let movieDetailURLPrefix = "https://api.themoviedb.org/3/movie/"
         private static let pageSuffix = "&page="
+        private static let videosSuffix = "/videos"
         
         static let popularMoviesURL = "https://api.themoviedb.org/3/movie/popular?api_key=44d748443604f06fc59b4ce6d9201418"
         
@@ -29,8 +30,13 @@ class MovieDatabase: NSObject {
         static func popularMoviesURLForPage(_ page:Int) -> String {
             return "\(popularMoviesURL)\(pageSuffix)\(page)"
         }
+        
+        static func videosURLForId(_ movieId:NSNumber) -> String {
+            return "\(APICalls.movieDetailURLPrefix)\(movieId.stringValue)\(APICalls.videosSuffix)\(apiKeySuffix)"
+        }
     }
     
+    private static let youtubeSiteName = "YouTube"
     static let sharedInstance = MovieDatabase()
     
     func getPopularMovies(withCallback callback:@escaping ([MovieEntity]) -> ()) {
@@ -94,6 +100,39 @@ class MovieDatabase: NSObject {
             // callback empty on error
             print("Error: \(error)")
             callback([:])
+        }
+    }
+    
+    func getYoutubeVideoForMovie(_ movie:MovieEntity, withCallback callback:@escaping (String?) -> ()) {
+        let manager = AFHTTPSessionManager()
+        manager.requestSerializer = AFJSONRequestSerializer()
+        manager.get(MovieDatabase.APICalls.videosURLForId(movie.movieId), parameters: nil, progress: nil, success: { (task, response) in
+            //            print("JSON response: \(response ?? "NO RESPONSE")")
+            // as parsing response, check for integrity. If there is something wrong, callback empty (error)
+            guard let enclosingDict = response as? [String:Any] else {
+                callback(nil)
+                return
+            }
+            guard let resultArray = enclosingDict["results"] as? [[String:Any]] else {
+                callback(nil)
+                return
+            }
+            // find first video from youtube and call callback with its key/id
+            for dictionary in resultArray {
+                if dictionary["site"] as? String == MovieDatabase.youtubeSiteName {
+                    if let youtubeVideoId = dictionary["key"] as? String {
+                        callback(youtubeVideoId)
+                        return
+                    }
+                }
+            }
+            // if no video is from youtube
+            callback(nil)
+            
+        }) { (task, error) in
+            // callback empty on error
+            print("Error: \(error)")
+            callback(nil)
         }
     }
 }

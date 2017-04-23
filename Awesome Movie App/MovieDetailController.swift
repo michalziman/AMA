@@ -16,21 +16,29 @@ class MovieDetailController: UIViewController {
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet var playTrailerButton: UIBarButtonItem!
     
     var movie: MovieEntity? {
         didSet {
             updateView()
             
-            // Get missing information from movie database, or return if genres are already loaded
-            if movie!.genres.count > 0 {
-                return
+            // Get missing information from movie database, if it is not loaded
+            if movie!.genres.count <= 0 {
+                MovieDatabase.sharedInstance.getDetailsForMovie(movie!) { (movieDict) in
+                    DispatchQueue.main.async {
+                        // set genres
+                        self.movie?.parseGenres(fromDictionary: movieDict)
+                        self.updateView()
+                    }
+                }
             }
-            
-            MovieDatabase.sharedInstance.getDetailsForMovie(movie!) { (movieDict) in
-                DispatchQueue.main.async {
-                    // set genres
-                    self.movie?.parseGenres(fromDictionary: movieDict)
-                    self.updateView()
+            if movie!.trailerYoutubeId == nil {
+                MovieDatabase.sharedInstance.getYoutubeVideoForMovie(movie!) { (youtubeVideoId) in
+                    DispatchQueue.main.async {
+                        // set trailer id
+                        self.movie?.trailerYoutubeId = youtubeVideoId
+                        self.updateView()
+                    }
                 }
             }
         }
@@ -73,10 +81,25 @@ class MovieDetailController: UIViewController {
                 })
             }
         }
+        
+        if movie.trailerYoutubeId == nil {
+            // this removes play button
+            navigationItem.rightBarButtonItem = nil
+        } else {
+            // this adds it back
+            navigationItem.rightBarButtonItem = playTrailerButton
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowTrailer" {
+            let controller = segue.destination as! TrailerController
+            controller.youtubeVideoId = movie?.trailerYoutubeId
+        }
     }
 }

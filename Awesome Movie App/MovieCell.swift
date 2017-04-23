@@ -30,6 +30,12 @@ class MovieCell: UITableViewCell {
                             self.movie?.parseGenres(fromDictionary: movieDict)
                         }
                     }
+                    MovieDatabase.sharedInstance.getYoutubeVideoForMovie(self.movie!) { (youtubeVideoId) in
+                        DispatchQueue.main.async {
+                            // set trailer id
+                            self.movie?.trailerYoutubeId = youtubeVideoId
+                        }
+                    }
                 }
             }
         }

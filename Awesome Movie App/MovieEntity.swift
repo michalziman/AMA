@@ -15,11 +15,10 @@ class MovieEntity: NSObject {
     let releaseYear: Int
     var genres: [String]
     var overview: String
+    var trailerYoutubeId: String?
     
     private static let dateFormatter = DateFormatter()
     
-    // TODO add trailer link and trailer playback in detail
-
     // Downloaded image is saved to temp directory (lasts cca 2 days there) as a cache
     // Both methods should be used on background thread
     var imageURL: URL {

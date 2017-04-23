@@ -25,6 +25,7 @@
 		906BEE2B1E55B4660091BAA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 906BEE2A1E55B4660091BAA3 /* Assets.xcassets */; };
 		906BEE2E1E55B4660091BAA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 906BEE2C1E55B4660091BAA3 /* LaunchScreen.storyboard */; };
 		906BEE441E55B4660091BAA3 /* Awesome_Movie_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906BEE431E55B4660091BAA3 /* Awesome_Movie_AppUITests.swift */; };
+		908EFED01EAC9520006EF4E6 /* TrailerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908EFECF1EAC9520006EF4E6 /* TrailerController.swift */; };
 		9F42D62052035AE76186BD56 /* Pods_Awesome_Movie_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1512DE9307840B2E295DF23 /* Pods_Awesome_Movie_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		906BEE3F1E55B4660091BAA3 /* Awesome Movie AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Awesome Movie AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		906BEE431E55B4660091BAA3 /* Awesome_Movie_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Awesome_Movie_AppUITests.swift; sourceTree = "<group>"; };
 		906BEE451E55B4660091BAA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		908EFECF1EAC9520006EF4E6 /* TrailerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrailerController.swift; sourceTree = "<group>"; };
 		9D4FBA5B10D381761D7221A1 /* Pods-Awesome Movie AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome Movie AppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Awesome Movie AppUITests/Pods-Awesome Movie AppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AFB932C9EBFA9CB3350984A2 /* Pods-Awesome Movie AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome Movie AppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Awesome Movie AppUITests/Pods-Awesome Movie AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B1512DE9307840B2E295DF23 /* Pods_Awesome_Movie_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Awesome_Movie_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				9010E9781E56252600AB6483 /* YearCell.swift */,
 				9010E97A1E56254000AB6483 /* PickerCell.swift */,
 				9010E9721E5614A300AB6483 /* MovieDetailController.swift */,
+				908EFECF1EAC9520006EF4E6 /* TrailerController.swift */,
 				9010E9651E55D4DF00AB6483 /* MovieDatabase.swift */,
 				9010E9671E55D4F000AB6483 /* MovieEntity.swift */,
 				906BEE271E55B4660091BAA3 /* Main.storyboard */,
@@ -481,6 +484,7 @@
 				9010E9791E56252600AB6483 /* YearCell.swift in Sources */,
 				9010E9731E5614A300AB6483 /* MovieDetailController.swift in Sources */,
 				9010E96F1E5611E100AB6483 /* MovieCell.swift in Sources */,
+				908EFED01EAC9520006EF4E6 /* TrailerController.swift in Sources */,
 				9010E9641E55D47700AB6483 /* MovieTableController.swift in Sources */,
 				9010E9711E5611F200AB6483 /* LoadingCell.swift in Sources */,
 				906BEE241E55B4660091BAA3 /* AppDelegate.swift in Sources */,

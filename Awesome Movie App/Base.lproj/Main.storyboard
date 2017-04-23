@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i1j-U8-qbK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i1j-U8-qbK">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -371,12 +371,19 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Movie Detail" id="fQk-kZ-qSv"/>
+                    <navigationItem key="navigationItem" title="Movie Detail" id="fQk-kZ-qSv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="YC2-Zv-Lys">
+                            <connections>
+                                <segue destination="PpN-59-0eW" kind="show" identifier="ShowTrailer" id="Nkb-oS-DWe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="asn-tW-ICJ" id="nlM-mg-iId"/>
                         <outlet property="genresLabel" destination="fpt-52-S8A" id="Rmj-iE-mJP"/>
                         <outlet property="imageView" destination="6hs-Xg-6Hg" id="fh1-Vn-yx0"/>
                         <outlet property="overviewLabel" destination="n6c-tQ-mpo" id="Bf0-FJ-azF"/>
+                        <outlet property="playTrailerButton" destination="YC2-Zv-Lys" id="uFu-hn-YWN"/>
                         <outlet property="titleLabel" destination="Px8-zt-dBw" id="NDs-UI-vSs"/>
                         <outlet property="yearLabel" destination="SVJ-0S-hih" id="SqL-yG-98n"/>
                     </connections>
@@ -384,6 +391,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cwB-vE-IdW" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1336.875" y="582.04225352112678"/>
+        </scene>
+        <!--Movie Trailer-->
+        <scene sceneID="IbF-Mz-joN">
+            <objects>
+                <viewController title="Movie Trailer" id="PpN-59-0eW" customClass="TrailerController" customModule="Awesome_Movie_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rd4-fT-bLw"/>
+                        <viewControllerLayoutGuide type="bottom" id="F78-0S-shn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3RZ-D0-mzq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D6R-oc-HIw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="PpN-59-0eW" id="Jcm-74-v6G"/>
+                                </connections>
+                            </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="KHo-Uv-sHW">
+                                <rect key="frame" x="142" y="221.5" width="37" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="C50-dK-mNy"/>
+                                    <constraint firstAttribute="width" constant="37" id="MAf-mM-g0V"/>
+                                </constraints>
+                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="D6R-oc-HIw" firstAttribute="leading" secondItem="3RZ-D0-mzq" secondAttribute="leading" id="Hle-O4-rWa"/>
+                            <constraint firstItem="KHo-Uv-sHW" firstAttribute="centerY" secondItem="3RZ-D0-mzq" secondAttribute="centerY" id="NE9-cV-ZIq"/>
+                            <constraint firstItem="D6R-oc-HIw" firstAttribute="top" secondItem="3RZ-D0-mzq" secondAttribute="topMargin" id="NrS-67-FaO"/>
+                            <constraint firstItem="KHo-Uv-sHW" firstAttribute="centerX" secondItem="3RZ-D0-mzq" secondAttribute="centerX" id="PMY-eH-zoU"/>
+                            <constraint firstAttribute="trailing" secondItem="D6R-oc-HIw" secondAttribute="trailing" id="Tfb-tB-h4p"/>
+                            <constraint firstItem="F78-0S-shn" firstAttribute="top" secondItem="D6R-oc-HIw" secondAttribute="bottom" id="xVC-dN-8E3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="KHo-Uv-sHW" id="7DY-YO-4iW"/>
+                        <outlet property="webView" destination="D6R-oc-HIw" id="rwB-rN-ZaL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qw4-LB-yCD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2137.5" y="580"/>
         </scene>
     </scenes>
 </document>
