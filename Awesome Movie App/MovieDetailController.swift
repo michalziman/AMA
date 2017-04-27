@@ -24,8 +24,9 @@ class MovieDetailController: UIViewController {
             updateView()
             
             // Get missing information from movie database, if it is not loaded
+            // When too many requests occure, try again later, after retry time in response header - the obvious workaround.
             if movie!.genres.count <= 0 {
-                MovieDatabase.sharedInstance.getDetailsForMovie(movie!) { (movieDict) in
+                MovieDatabase.sharedInstance.getDetailsForMovie(movie!, handlingTooManyRequests: true) { (movieDict) in
                     DispatchQueue.main.async {
                         // set genres
                         self.movie?.parseGenres(fromDictionary: movieDict)
@@ -34,7 +35,7 @@ class MovieDetailController: UIViewController {
                 }
             }
             if movie!.trailerYoutubeId == nil {
-                MovieDatabase.sharedInstance.getYoutubeVideoForMovie(movie!) { (youtubeVideoId) in
+                MovieDatabase.sharedInstance.getYoutubeVideoForMovie(movie!, handlingTooManyRequests: true) { (youtubeVideoId) in
                     DispatchQueue.main.async {
                         // set trailer id
                         self.movie?.trailerYoutubeId = youtubeVideoId

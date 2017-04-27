@@ -93,7 +93,7 @@ class MovieDatabase: NSObject {
         }
     }
     
-    func getDetailsForMovie(_ movie:MovieEntity, withCallback callback:@escaping ([String:Any]) -> ()) {
+    func getDetailsForMovie(_ movie:MovieEntity, handlingTooManyRequests handling:Bool, withCallback callback:@escaping ([String:Any]) -> ()) {
         let manager = AFHTTPSessionManager()
         manager.requestSerializer = AFJSONRequestSerializer()
         manager.get(MovieDatabase.APICalls.movieDetailURLForId(movie.movieId), parameters: nil, progress: nil, success: { (task, response) in
@@ -107,13 +107,22 @@ class MovieDatabase: NSObject {
             callback(resultDict)
             
         }) { (task, error) in
+            if handling, let response = task?.response as? HTTPURLResponse {
+                // this is a workaround to fix "Too many requests from client" error sent by API too often
+                if response.statusCode == 429, let retryAfter = response.allHeaderFields["Retry-After"] as? String, let delay = TimeInterval(retryAfter) {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay, execute: {
+                        self.getDetailsForMovie(movie, handlingTooManyRequests: handling, withCallback: callback)
+                    })
+                    return
+                }
+            }
             // callback empty on error
             print("Error: \(error)")
             callback([:])
         }
     }
     
-    func getYoutubeVideoForMovie(_ movie:MovieEntity, withCallback callback:@escaping (String?) -> ()) {
+    func getYoutubeVideoForMovie(_ movie:MovieEntity, handlingTooManyRequests handling:Bool, withCallback callback:@escaping (String?) -> ()) {
         let manager = AFHTTPSessionManager()
         manager.requestSerializer = AFJSONRequestSerializer()
         manager.get(MovieDatabase.APICalls.videosURLForId(movie.movieId), parameters: nil, progress: nil, success: { (task, response) in
@@ -140,6 +149,15 @@ class MovieDatabase: NSObject {
             callback(nil)
             
         }) { (task, error) in
+            if handling, let response = task?.response as? HTTPURLResponse {
+                // this is a workaround to fix "Too many requests from client" error sent by API too often
+                if response.statusCode == 429, let retryAfter = response.allHeaderFields["Retry-After"] as? String, let delay = TimeInterval(retryAfter) {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay, execute: {
+                        self.getYoutubeVideoForMovie(movie, handlingTooManyRequests: handling, withCallback: callback)
+                    })
+                    return
+                }
+            }
             // callback empty on error
             print("Error: \(error)")
             callback(nil)
