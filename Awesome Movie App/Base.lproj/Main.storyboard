@@ -43,6 +43,15 @@
                                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="YiX-df-HFO">
                                             <rect key="frame" x="75" y="38" width="20" height="20"/>
                                         </activityIndicatorView>
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No image yet :-(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHG-xV-ntU">
+                                            <rect key="frame" x="0.0" y="37" width="171" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="4RO-ei-WSN"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="B6O-Jb-sZe" secondAttribute="bottom" id="0Y8-rb-r9t"/>
@@ -54,10 +63,14 @@
                                         <constraint firstItem="YiX-df-HFO" firstAttribute="centerX" secondItem="B6O-Jb-sZe" secondAttribute="centerX" id="Niv-QA-aG0"/>
                                         <constraint firstItem="B6O-Jb-sZe" firstAttribute="leading" secondItem="KGx-Eq-IVk" secondAttribute="leading" id="V5o-lZ-Lhh"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ydd-wz-Jef" secondAttribute="trailing" id="ZYf-XO-pCz"/>
+                                        <constraint firstItem="zHG-xV-ntU" firstAttribute="centerY" secondItem="B6O-Jb-sZe" secondAttribute="centerY" id="bb1-ry-WI1"/>
+                                        <constraint firstItem="zHG-xV-ntU" firstAttribute="trailing" secondItem="B6O-Jb-sZe" secondAttribute="trailing" id="oAA-tO-V4n"/>
+                                        <constraint firstItem="zHG-xV-ntU" firstAttribute="leading" secondItem="B6O-Jb-sZe" secondAttribute="leading" id="qQ9-zl-qkU"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="activityIndicator" destination="YiX-df-HFO" id="x8d-ld-BzS"/>
+                                    <outlet property="noImageLabel" destination="zHG-xV-ntU" id="jUE-Ja-0nk"/>
                                     <outlet property="posterImageView" destination="B6O-Jb-sZe" id="hbX-xX-J7G"/>
                                     <outlet property="titleLabel" destination="ydd-wz-Jef" id="KAr-W8-zdv"/>
                                     <segue destination="u9z-9Q-5oy" kind="show" identifier="ShowDetail" id="qNf-sz-E90"/>
@@ -111,7 +124,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pv5-cO-3yW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="532.5" y="151.05633802816902"/>
+            <point key="canvasLocation" x="532.5" y="150"/>
         </scene>
         <!--Filter-->
         <scene sceneID="CqW-cb-9Gf">
@@ -276,9 +289,21 @@
                                                 <rect key="frame" x="142" y="72" width="37" height="37"/>
                                                 <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </activityIndicatorView>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No image yet :-(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMo-u4-OE5">
+                                                <rect key="frame" x="98" y="79" width="123.5" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="O60-d9-qwx"/>
+                                                    <constraint firstAttribute="width" constant="123.5" id="bS4-SW-3XA"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="wMo-u4-OE5" firstAttribute="centerY" secondItem="VpB-AO-4Kb" secondAttribute="centerY" id="1pL-Xo-g9P"/>
+                                            <constraint firstItem="wMo-u4-OE5" firstAttribute="centerX" secondItem="VpB-AO-4Kb" secondAttribute="centerX" id="BMf-BI-mNS"/>
                                             <constraint firstItem="asn-tW-ICJ" firstAttribute="centerY" secondItem="VpB-AO-4Kb" secondAttribute="centerY" id="Hcf-tD-SLs"/>
                                             <constraint firstAttribute="bottom" secondItem="6hs-Xg-6Hg" secondAttribute="bottom" id="Hey-vf-za4"/>
                                             <constraint firstItem="asn-tW-ICJ" firstAttribute="centerX" secondItem="VpB-AO-4Kb" secondAttribute="centerX" id="QIR-7H-mDC"/>
@@ -382,6 +407,7 @@
                         <outlet property="activityIndicator" destination="asn-tW-ICJ" id="nlM-mg-iId"/>
                         <outlet property="genresLabel" destination="fpt-52-S8A" id="Rmj-iE-mJP"/>
                         <outlet property="imageView" destination="6hs-Xg-6Hg" id="fh1-Vn-yx0"/>
+                        <outlet property="noImageLabel" destination="wMo-u4-OE5" id="E7E-vn-jGi"/>
                         <outlet property="overviewLabel" destination="n6c-tQ-mpo" id="Bf0-FJ-azF"/>
                         <outlet property="playTrailerButton" destination="YC2-Zv-Lys" id="uFu-hn-YWN"/>
                         <outlet property="titleLabel" destination="Px8-zt-dBw" id="NDs-UI-vSs"/>

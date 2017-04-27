@@ -17,6 +17,7 @@ class MovieDetailController: UIViewController {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet var playTrailerButton: UIBarButtonItem!
+    @IBOutlet weak var noImageLabel: UILabel!
     
     var movie: MovieEntity? {
         didSet {
@@ -79,6 +80,12 @@ class MovieDetailController: UIViewController {
                         self.activityIndicator.stopAnimating()
                     }
                 })
+            } else {
+                // stop spinner if there is no image and show no image label
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.noImageLabel.isHidden = false
+                }
             }
         }
         

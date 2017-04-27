@@ -65,6 +65,15 @@ class MovieDatabase: NSObject {
             callback(movies)
             
         }) { (task, error) in
+            if let response = task?.response as? HTTPURLResponse {
+                // this is a workaround to fix "Too many requests from client" error sent by API too often
+                if response.statusCode == 429, let retryAfter = response.allHeaderFields["Retry-After"] as? String, let delay = TimeInterval(retryAfter) {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay, execute: {
+                        self.getPopularMovies(onPage: page, withCallback: callback)
+                    })
+                    return
+                }
+            }
             // callback empty on error
             print("Error: \(error)")
             callback([])

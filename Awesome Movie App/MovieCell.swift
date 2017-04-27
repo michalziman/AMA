@@ -13,12 +13,15 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var noImageLabel: UILabel!
     
     var movie:MovieEntity? {
         didSet {
             // after setting movie show title, clear image view and start loading image (which may be fast if it is already cached in temp folder)
             titleLabel.text = movie?.title
             self.posterImageView.image = nil
+            // also hide no image label
+            self.noImageLabel.isHidden = true
             if movie != nil {
                 // Image loading is done in background to avoid tiny freezes while scrolling
                 DispatchQueue.global(qos: .background).async {
@@ -73,6 +76,12 @@ class MovieCell: UITableViewCell {
                     }
                 }
             })
+        } else {
+            // stop spinner if there is no image and show no image label
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.noImageLabel.isHidden = false
+            }
         }
     }
 
