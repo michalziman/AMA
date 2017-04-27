@@ -243,6 +243,13 @@
                             <outlet property="delegate" destination="Qes-Dp-btk" id="48Z-Cm-t92"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Filter" id="WfF-ZQ-uRM">
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="tOu-fR-KXz">
+                            <connections>
+                                <action selector="resetFilter:" destination="Qes-Dp-btk" id="gV8-t6-mbY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IsJ-fD-3hh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

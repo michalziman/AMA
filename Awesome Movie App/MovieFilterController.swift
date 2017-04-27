@@ -137,6 +137,18 @@ class MovieFilterController: UITableViewController {
         }
         tableView.endUpdates()
     }
+    
+    @IBAction func resetFilter(_ sender: Any) {
+        minYear = MovieFilterController.minimumProductionYear
+        maxYear = Calendar.current.component(.year, from: Date()) // now
+        
+        // notify delegate
+        if let delegate = self.delegate {
+            delegate.movieFilter(self, didSelectMinYear: minYear, maxYear: maxYear)
+        }
+        
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension MovieFilterController: PickerCellDelegate {
