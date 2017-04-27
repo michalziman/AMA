@@ -68,6 +68,7 @@ class MovieTableController: UITableViewController {
     }
     
     func filterMovies() {
+        let lastFilteredMoviesCount = filteredMovies.count
         let yearNow = Calendar.current.component(.year, from: Date())
         if filterMinimum == MovieFilterController.minimumProductionYear && filterMaximum == yearNow {
             // if range is maximum, do not filter, neither show range
@@ -85,8 +86,27 @@ class MovieTableController: UITableViewController {
             self.navigationItem.prompt = "\(filterMinimum) – \(filterMaximum)"
         }
         
-        self.tableView.reloadData()
-        // reloading data will eventuelly cause displaying of last cell again and thus loading next page, if entries are so few, that last cell will be displayed
+        if allMovies.count <= MovieDatabase.moviesPerPage {
+            self.tableView.reloadData()
+            // reloading data will eventuelly cause displaying of last cell again and thus loading next page, if entries are so few, that last cell will be displayed
+        } else {
+            let newRows = filteredMovies.count - lastFilteredMoviesCount
+            self.tableView.beginUpdates()
+            var indexes:[IndexPath] = []
+            for i in 0..<newRows {
+                indexes.append(IndexPath(row: lastFilteredMoviesCount + i, section: 0))
+            }
+            self.tableView.reloadRows(at: [IndexPath(row: lastFilteredMoviesCount, section: 0)], with: .fade)
+            self.tableView.insertRows(at: indexes, with: .middle)
+            self.tableView.endUpdates()
+            
+            // when there is nothing to be inserted, only refresh, for some reason, the reload is not done, thus it is necessary to load next page from here
+            if indexes.count == 0 {
+                loadNextPage()
+            }
+        }
+        
+        
         
         // if there is nothing after filtering, load next page
         if filteredMovies.count < 1  {

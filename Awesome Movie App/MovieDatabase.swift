@@ -37,6 +37,7 @@ class MovieDatabase: NSObject {
     }
     
     private static let youtubeSiteName = "YouTube"
+    static let moviesPerPage = 20
     static let sharedInstance = MovieDatabase()
     
     func getPopularMovies(withCallback callback:@escaping ([MovieEntity]) -> ()) {
