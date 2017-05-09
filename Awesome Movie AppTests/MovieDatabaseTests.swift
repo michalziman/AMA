@@ -129,7 +129,7 @@ class MovieDatabaseTests: XCTestCase {
         let jurassicWorldMovie = MovieEntity(withDictionary: ["id":135397, ])
         
         // when
-        MovieDatabase.sharedInstance.getDetailsForMovie(jurassicWorldMovie) { (dictionary) in
+        MovieDatabase.sharedInstance.getDetailsForMovie(jurassicWorldMovie, handlingTooManyRequests: false) { (dictionary) in
             if dictionary.count > 0 {
                 print("Details for movie fetched: \(dictionary)")
             } else {
